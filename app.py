@@ -15,7 +15,7 @@ def run():
         (out, err) = proc.communicate()
         res = err.decode("utf-8")
         rewriting = ''
-        with open("logs.txt", 'r') as fr:
+        with open("/home/makosov/bots/read_docker_logs/logs.txt", 'r') as fr:
             txt_file = fr.read()
             if len(txt_file) != len(res):
                 rewriting = res
@@ -27,17 +27,18 @@ def run():
                                                            firma="ИИС",
                                                            cont_telefon="+ 7 (495) 640 4074",
                                                            description=txt_for_parsing,
-                                                           full_name="читаю логи Телеграмм Бота ",
+                                                           full_name="служба 'read_docker_logs.service' на сервере с Ботом",
                                                            priority="Высокий")
                     if info_mail:
                         logging.error(datetime.now(), "Ошибка SMTP, сообщения не отправляются ")
 
         if rewriting:
-            with open("logs.txt", 'w') as fw:
+            with open("/home/makosov/bots/read_docker_logs/logs.txt", 'w') as fw:
                 fw.write(rewriting)
         sleep(300)
 
 
 if __name__ == '__main__':
-    open("logs.txt", 'a').close()
+    open("/home/makosov/bots/read_docker_logs/logs.txt", 'a').close()
+    print("MAIN")
     run()
