@@ -21,6 +21,8 @@ def run():
                 rewriting = res
             if len(txt_file.split()) < len(res.split()):
                 txt_for_parsing = res.replace(txt_file, "")
+                if re.search('Сообщение HTML возможно удалено', txt_for_parsing, re.IGNORECASE):
+                    continue
                 if re.search('error', txt_for_parsing, re.IGNORECASE) or re.search('ошибка', txt_for_parsing,
                                                                                    re.IGNORECASE):
                     if re.search('TimeoutError', txt_for_parsing, re.IGNORECASE) or \
